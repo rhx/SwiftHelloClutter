@@ -1,11 +1,11 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.2
 
 import PackageDescription
 
 let package = Package(
     name: "HelloClutter",
     dependencies: [
-        .package(url: "https://github.com/rhx/SwiftClutter.git", .branch("master")),
+        .package(name: "Clutter", url: "https://github.com/rhx/SwiftClutter.git", .branch("master")),
     ],
     targets: [
         .target(name: "HelloClutter", dependencies: ["Clutter"]),

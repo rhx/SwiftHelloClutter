@@ -5,7 +5,7 @@ import Clutter
 /// Create a rectangle of a given colour on the given stage.
 func createRectOn(_ s: Stage, colour c: Color, x: Double = 256, y: Double = 256, width: Double = 256, height: Double = 128, anchorX: Double = 128, anchorY: Double = 64) -> Rectangle {
     var r = Rectangle(color: c)
-    r.setAnchorPoint(anchorX: gfloat(anchorX), anchorY: gfloat(anchorY))
+    r.setAnchorPoint(anchorX: anchorX, anchorY: anchorY)
     r.size = (width, height)
     r.position = (x, y)
     s.add(child: r)
@@ -44,8 +44,8 @@ stage.connect(event: .buttonPressEvent) { stage, event, _ in
     var x: gfloat = 0
     var y: gfloat = 0
     clutter_event_get_coords(event, &x, &y)
-    let clicked = ActorRef(stage.getActorAtPos(pickMode: .all, x: CInt(x), y: CInt(y)))
-    guard clicked.ptr != stage.ptr else { return }
+    guard let clicked = stage.getActorAtPos(pickMode: .all, x: Int(x), y: Int(y)),
+          clicked.ptr != stage.ptr else { return }
     clicked.hide()
 }
 
@@ -63,7 +63,7 @@ timeLine.onNewFrame { _,_,_ in
     let n = rectangles.count
     for i in 0..<n {
         let r = rectangles[i]
-        r.setRotationAngle(axis: .z_axis, angle: rotation * Double(n-i-1))
+        r.setRotationAngle(axis: .zAxis, angle: rotation * Double(n-i-1))
         r.setScale(scaleX: scaleAmount, scaleY: scaleAmount)
         if scale == 0 { r.show() }
     }
