@@ -6,9 +6,9 @@
 # On macOS (Darwin), this script uses clutter-mac-bundler to create an app
 #
 . ./config.sh
-clutter=`echo Packages/Clutter-*/Sources/Clutter/Clutter-1.0.swift`
+clutter=`echo $BUILD_DIR/checkouts/*Clutter-*/Sources/Clutter/Clutter-1.0.swift`
 [ -e $clutter ] || ./generate-wrapper.sh
-swift build $CCFLAGS $LINKFLAGS "$@"
+swift build --build-path "$BUILD_DIR" $CCFLAGS $LINKFLAGS "$@"
 if [ `uname` = "Darwin" ]; then
 	. ./app-bundle.sh
 fi
