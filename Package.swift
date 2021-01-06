@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "HelloClutter",
     dependencies: [
-        .package(name: "Clutter", url: "https://github.com/rhx/SwiftClutter.git", .branch("master")),
+        .package(name: "Clutter", url: "https://github.com/rhx/SwiftClutter.git", .branch("main")),
     ],
     targets: [
         .target(name: "HelloClutter", dependencies: ["Clutter"]),
